@@ -4,6 +4,8 @@ const app = require('./app');
 // Zrwam5UOs0X83atz
 const { DB_HOST } = require("./config");
 
+// const { DB_HOST } = process.env;
+
 mongoose.connect(DB_HOST)
   .then(() => {
     app.listen(3000, () => {
