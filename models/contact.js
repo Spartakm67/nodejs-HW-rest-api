@@ -1,5 +1,31 @@
 // const { boolean } = require("joi");
 const { Schema, model } = require("mongoose");
+const { handleMongooseError } = require("../helpers");
+const Joi = require("joi");
+
+const phoneRegexp = /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/;
+
+const addSchema = Joi.object({
+    name: Joi.string().min(2)
+    .max(30).required().messages({
+        "any.required": `name must be exist`
+    }),
+    email: Joi.string().required().messages({
+        "any.required": `email must be exist`
+    }),
+    phone: Joi.string().pattern(phoneRegexp).required().messages(
+        {"any.required": `phone must be exist`}),
+    favorite: Joi.boolean(),
+});
+
+const updateFavoriteSchema = Joi.object({
+    favorite: Joi.boolean().required(),
+})
+
+const schemas = {
+    addSchema,
+    updateFavoriteSchema,
+};
 
 const contactSchema = new Schema({
     name: {
@@ -12,15 +38,17 @@ const contactSchema = new Schema({
     },
     phone: {
         type: String,
-        match: /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
+        match: phoneRegexp,
         required: [true, 'Set phone for contact'],
     },
     favorite: {
         type: Boolean,
         default: false,
     },
-});
+}, { versionKey: false, timestamps: true });
+
+contactSchema.post("save", handleMongooseError);
 
 const Contact = model("contact", contactSchema);
 
-module.exports = Contact;
+module.exports = { Contact, schemas };
