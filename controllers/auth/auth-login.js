@@ -8,7 +8,7 @@ const login = async (req, res, next) => {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
         if (!user) {
-            throw new HttpError(404, "User not found");
+            throw new HttpError(400, "Email or password is incorrect");
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
