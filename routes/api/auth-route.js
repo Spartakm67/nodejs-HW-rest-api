@@ -8,7 +8,7 @@ router.post("/register", validateBody(userSchemas.registerSchema), ctrl.register
 
 router.post("/login", validateBody(userSchemas.loginSchema), ctrl.login);
 
-// router.get("/logout", authenticate, ctrl.logout);
+router.post("/logout", authenticate, ctrl.logout);
 
 router.get("/current", authenticate, ctrl.getCurrent);
 
