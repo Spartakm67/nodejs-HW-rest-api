@@ -22,7 +22,13 @@ const userSchema = new Schema(
             required: [true, 'Set password for user'],
             unique: true,
             minlength: 6,
-            },
+        },
+        subscription: {
+            type: String,
+            enum: ["starter", "pro", "business"],
+            default: "starter"
+  },
+        token: String
         
     }, { versionKey: false, timestamps: true });
 

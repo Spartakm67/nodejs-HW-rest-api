@@ -8,18 +8,23 @@ const login = async (req, res, next) => {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
         if (!user) {
-            throw new HttpError(400, "Email or password is incorrect");
+            throw HttpError(400, "Email or password is incorrect");
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            throw new HttpError(401, "Invalid credentials");
+            throw HttpError(401, "Invalid credentials");
     }
     
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: "23h",
     });
 
-        res.json({ token });
+    res.json({
+        token,
+        "user": {
+    email: user.email,
+    subscription: user.subscription
+  } });
     } 
         
 module.exports = login;

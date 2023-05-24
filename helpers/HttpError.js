@@ -1,5 +1,5 @@
 const errorMessageList = {
-    '400': 'Bad Request',
+    '400': 'Email or password is incorrect',
     '401': 'Not authorized',
     '403': 'Forbidden',
     '404': 'Not Found',
@@ -7,8 +7,8 @@ const errorMessageList = {
     '409': 'Conflict',
     '500': 'Internal Server Error',
     '503': 'Service Unavailable',
-    '504': 'Gateway Timeout'
-}
+    '504': 'Gateway Timeout',
+};
 
 
 const HttpError = (status, message = errorMessageList[status]) => {
