@@ -2,8 +2,9 @@ const express = require('express');
 const crud = require("../../controllers/contacts-crud");
 const router = express.Router();
 const { schemas } = require("../../models/contact");
-const { validateBody, isValidId } = require("../../middleware");
+const { validateBody, isValidId, authenticate } = require("../../middleware");
 
+router.use(authenticate);
 
 router.get('/', crud.getAll);
 
