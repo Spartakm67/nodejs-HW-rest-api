@@ -5,7 +5,6 @@ const updateSubscription = async (req, res) => {
     const { _id } = req.user;
     const { subscription } = req.body;
     const validSubscriptions = User.schema.path("subscription").enumValues;
-//   const validSubscriptions = ["starter", "pro", "business"];
     
   if (!validSubscriptions.includes(subscription)) {
     throw HttpError(400, "Invalid subscription value");
