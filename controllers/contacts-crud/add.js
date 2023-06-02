@@ -1,9 +1,16 @@
+const fs = require("fs/promises");
+const path = require("path");
 const { Contact } = require("../../models/contact");
 
-const add = async (req, res) => {
+const contactsPath = path.resolve("public", "avatars");
 
+const add = async (req, res) => {
+    const {path: oldPath, originalname} = req.file;
+    const newPath = path.join(contactsPath, originalname);
+    await fs.rename(oldPath, newPath);
+    const avatar = path.join("avatars", originalname);
   const { _id: owner } = req.user;
-  const newContact = await Contact.create({ ...req.body, owner });
+  const newContact = await Contact.create({ ...req.body, avatar, owner });
   res.status(201).json(newContact);
   
 };
