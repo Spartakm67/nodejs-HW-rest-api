@@ -10,7 +10,7 @@ router.get('/', crud.getAll);
 
 router.get('/:contactId', isValidId, crud.getById);
 
-router.post('/', upload.single("avatar"), validateBody(schemas.addSchema), crud.add);
+router.post('/', upload.single("avatar"), validateBody(schemas.addSchema), crud.addContact);
 
 router.delete('/:contactId', isValidId, crud.deleteById);
 
