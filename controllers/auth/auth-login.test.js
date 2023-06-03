@@ -5,11 +5,11 @@ Unit tests for the login controller if the response is successful:
 3.The response should include a user object with two fields: "email" and "subscription", both of type String.
  */
 
-// const login = require("./auth-login");
+const login = require("./auth-login");
 
-// describe("the response should have a status code of 200", () => {
+describe("the response should have a status code of 200", () => {
 
-// test()
+test()
 
 
-// });
+});
