@@ -34,7 +34,7 @@ describe("test register rout", () => {
             password: "123456"
         };
 
-        const {statusCode, body} = await request(app).post("/api/auth/register").send(registerData);
+        const {statusCode} = await request(app).post("/api/auth/register").send(registerData);
         expect(statusCode).toBe(201);
         // expect(body.user.name).toBe(registerData.name);
         // expect(body.user.email).toBe(registerData.email);
