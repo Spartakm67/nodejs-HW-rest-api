@@ -6,10 +6,10 @@ const resendVerifyEmail = async (req, res) => {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if(!user) {
-        throw HttpError(404);
+        throw HttpError(404, "missing required field email");
     }
     if(user.verify) {
-        throw HttpError(400, "Email already verified"); 
+        throw HttpError(400, "Verification has already been passed"); 
     }
 
 const verifyEmail = {
@@ -21,7 +21,7 @@ const verifyEmail = {
     await sendEmail(verifyEmail);
 
     res.json({
-        message: "Verify email send"
+        message: "Verification email send"
     })
 };
 

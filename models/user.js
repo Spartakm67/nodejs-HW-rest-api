@@ -42,6 +42,7 @@ const userSchema = new Schema(
         },
         verificationCode: {
             type: String,
+            required: [true, 'Verify Code-token is required'],
         }
     }, { versionKey: false, timestamps: true });
 

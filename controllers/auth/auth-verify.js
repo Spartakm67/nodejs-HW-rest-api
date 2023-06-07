@@ -7,10 +7,10 @@ const verify = async (req, res) => {
     if (!user) { 
         throw HttpError(404);
     }
-    await User.findByIdAndUpdate(user._id, { verify: true, verificationCode: "" });
+    await User.findByIdAndUpdate(user._id, { verify: true, verificationCode: null });
 
     res.json({
-        message: "User successfully verified"
+        message: "Verification successful",
     })
 };
  
