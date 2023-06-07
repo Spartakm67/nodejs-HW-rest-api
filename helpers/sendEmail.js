@@ -22,15 +22,4 @@ const sendEmail = async (data) => {
     return true;
 };
 
-// const email = {
-//   from: UKR_NET_EMAIL,
-//   to: "kajig63664@pyadu.com",
-//   subject: "Verify your email",
-//   html: `<a href="">Click to verify your email</a>`
-// };
-
-// transport.sendMail(email)
-//   .then(() => console.log("Email send successfully"))
-//   .catch(error => console.log(error.message));
-
 module.exports = sendEmail;
