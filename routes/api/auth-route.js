@@ -6,7 +6,11 @@ const router = express.Router();
 
 router.post("/register", validateBody(userSchemas.registerSchema), ctrl.register);
 
+router.get("/verify/:verificationCode", ctrl.verify);   
+
 router.post("/login", validateBody(userSchemas.loginSchema), ctrl.login);
+
+
 
 router.post("/logout", authenticate, ctrl.logout);
 
