@@ -27,15 +27,13 @@ const register = async (req, res, next) => {
     });
 
 const verifyEmail = {
-//   from: UKR_NET_EMAIL,
   to: email,
   subject: "Verify your email",
   html: `<a target="_blank" href="${PROJECT_URL}/api/auth/verify/${verificationCode}">Click to verify your email</a>`
 };
-// "kajig63664@pyadu.com"
+
     await sendEmail(verifyEmail);
-    
-    
+        
     res.status(201).json({
         email: newUser.email,
         name: newUser.name,

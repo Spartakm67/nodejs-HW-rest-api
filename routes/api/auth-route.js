@@ -10,7 +10,7 @@ router.get("/verify/:verificationCode", ctrl.verify);
 
 router.post("/login", validateBody(userSchemas.loginSchema), ctrl.login);
 
-
+router.post("/verify", validateBody(userSchemas.emailSchema), ctrl.resendVerifyEmail);
 
 router.post("/logout", authenticate, ctrl.logout);
 
